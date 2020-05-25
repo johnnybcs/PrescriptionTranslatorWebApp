@@ -8,13 +8,13 @@ CLEARDB_DATABASE_URL: mysql://b9b5eb281a6874:c6f7e695@us-cdbr-east-06.cleardb.ne
 
 Use $connection = mysqli_connect(...) for local development
 */
-    $connection = mysqli_connect("localhost", "root", "", "prescriptionDictionary");
-//    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-//    $server = $url["host"];
-//    $username = $url["user"];
-//    $password = $url["pass"];
-//    $db = substr($url["path"], 1);
-//    $connection = new mysqli($server, $username, $password, $db);
+//    $connection = mysqli_connect("localhost", "root", "", "prescriptionDictionary");
+    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+    $server = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $db = substr($url["path"], 1);
+    $connection = new mysqli($server, $username, $password, $db);
 
     $input = "&nbsp";
     $output = "&nbsp";
