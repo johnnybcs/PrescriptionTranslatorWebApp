@@ -126,7 +126,7 @@
           <br>
            <form action="" method="post">
                 <div class="form-group">
-                    <label class="lead text-white" for="input">Enter your prescription</label>
+                    <label class="text-white" style="font-size:30px; " for="input">Enter your prescription</label>
                     <input class="form-control form-control-lg" id="input" type="text" name="input">
                 </div>
                 <input class="btn btn-primary" type="submit" name="submit" value="SUBMIT">
@@ -138,7 +138,7 @@
             <div class="jumbotron" style="padding: 1em 1em;">
                <h4 style="display:inline; text-decoration-skip-ink: none;"><?php echo "<i>$input</i>" ?></h4>
                <hr class="my-4">
-               <h1 style="display:inline; ">translates into</h1>
+               <h1 style="display:inline; color:#217fe5; ">translates into</h1>
                <hr class="my-4">
                <h4 class="lead"><?php echo $output; ?></h4>
             </div>
