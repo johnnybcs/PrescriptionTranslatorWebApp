@@ -1,0 +1,9 @@
+body {
+    background: url(background.png);
+}
+
+.jumbotron {
+    height: 260px;
+    text-align: center;
+}
+
