@@ -1,15 +1,22 @@
+<?php
+    $connection = mysqli_connect("localhost", "root", "", "prescriptionDictionary");
+    $output = "";
+    $randomPrescription = "";
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Prescription Translator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </head>
 <body>
     <form action="" method="post">
         <label>Enter your prescription</label>
-        <input type="text" name="input">
-        <input type="submit" name="submit" value="SUBMIT">
-        <input type="button" onclick="" name="generate" value="GENERATE RANDOM PRESCRIPTION">
+        <input id="input" type="text" name="input">
+        <input class="btn btn-primary" type="submit" name="submit" value="SUBMIT">
+        <input class="btn btn-success" type="submit" name="generate" value="GENERATE RANDOM PRESCRIPTION">
    </form>
    <?php
         class Prescription {
@@ -18,6 +25,7 @@
             public $timing;
             public $amount;
             public $methodOfDelivery;
+            
             function __construct() {
                 $this->hourlyFrequency = "";
                 $this->dailyFrequency = "";
@@ -26,9 +34,9 @@
                 $this->methodOfDelivery = "";
             }
         }
+    
         $prescription = new Prescription();
-        $connection = mysqli_connect("localhost", "root", "", "prescriptionDictionary");
-        $output = "";
+    
         if (isset($_POST["submit"]) && isset($_POST["input"])) {
             $input = $_POST["input"];
             $input = strtolower($input);
@@ -46,9 +54,35 @@
                 . " " . $prescription->hourlyFrequency . " " . $prescription->timing
                 . " " . $prescription->dailyFrequency;
         }
-        function generateRandomPrescription() {
-            echo "generate random prescription";
+    
+        if (isset($_POST["generate"])) {
+            generateRandomPrescription();
         }
+    
+        function generateRandomPrescription() {
+            global $connection;
+            $id = rand(1,10);
+            $query = "SELECT * FROM drugPrescription WHERE id = {$id}";
+            $result = mysqli_query($connection, $query);
+            $row = mysqli_fetch_assoc($result);
+            if ($row) {
+                $randomPrescription = $row["name"] . " " . 
+                                      $row["amount"] . " " .  
+                                      $row["methodOfDelivery"] . " " .
+                                      $row["hourlyFrequency"] . " " .
+                                      $row["timing"] . " " .
+                                      $row["dailyFrequency"];
+        ?>
+                
+    <script>
+        var input = document.getElementById("input");
+        input.value = "<?php echo $randomPrescription ?>";
+    </script>
+                
+        <?php
+            }
+        }
+    
         function getAmount($token, $tokens, $i) {
             global $connection;
             global $prescription;
@@ -67,6 +101,7 @@
                 }
             }
         }
+    
         function getMethodOfDelivery($token) {
             global $connection;
             global $prescription;
@@ -77,6 +112,7 @@
                 $prescription->methodOfDelivery = $row["translation"];
             }
         }
+    
         function getHourlyFrequency($token) {
             global $connection;
             global $prescription;
@@ -87,6 +123,7 @@
                 $prescription->hourlyFrequency = $row["translation"];
             }
         }
+    
         function getTiming($token) {
             global $connection;
             global $prescription;
@@ -97,6 +134,7 @@
                 $prescription->timing = $row["translation"];
             }
         }
+    
         function getDailyFrequency($token) {
             global $connection;
             global $prescription;
