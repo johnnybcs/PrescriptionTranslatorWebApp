@@ -1,5 +1,13 @@
 <?php
-// connection for local development
+/*
+ClearDB is the Heroku database.
+
+CLEARDB_DATABASE_URL => mysql://[username]:[password]@[host]/[database name]?reconnect=true
+
+CLEARDB_DATABASE_URL: mysql://b9b5eb281a6874:c6f7e695@us-cdbr-east-06.cleardb.net/heroku_993c503940d0c6c?    reconnect=true
+
+Use $connection = mysqli_connect(...) for local development
+*/
 // $connection = mysqli_connect("localhost", "root", "", "prescriptionDictionary");
     $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
     $server = $url["host"];
