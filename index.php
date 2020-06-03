@@ -129,7 +129,7 @@ Use $connection = mysqli_connect(...) for local development
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Prescription Translator</title>
+    <title>Drug Prescription Translator</title>
     <link rel="icon" href="favicon.png">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -138,7 +138,7 @@ Use $connection = mysqli_connect(...) for local development
 <body>
    <div class="container">
      <div class="row justify-content-center">
-         <h1 class="display-3 text-white">Prescription Translator</h1>
+         <h1 class="display-3 text-white">Drug Prescription Translator</h1>
      </div>
      <br>
      <br>
@@ -147,7 +147,7 @@ Use $connection = mysqli_connect(...) for local development
           <br>
            <form action="" method="post">
                 <div class="form-group">
-                    <label class="text-white" style="font-size:30px; " for="input">Enter your prescription</label>
+                    <label class="text-white" style="font-size:30px; " for="input">Enter your drug prescription</label>
                     <input class="form-control form-control-lg" id="input" type="text" name="input">
                 </div>
                 <input class="btn btn-primary" type="submit" name="submit" value="SUBMIT">
